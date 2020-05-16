@@ -44,17 +44,18 @@ app.get("/configure", function (req, res) {
 		const query1 = `
 		SELECT *
 		FROM users
-		`
-		
+		`;
+
 		client.query(query1, (err, res) => {
-				if (err) {
-						console.error(err);
-						return;
-				}
-		
-				for (let row of res.rows) {
-						console.log(row);
-				}
+			if (err) {
+				console.error(err);
+				return;
+			}
+
+			for (let row of res.rows) {
+				console.log(row);
+			}
+		});
 	});
 });
 
@@ -69,6 +70,7 @@ app.use("*", function (req, res) {
 app.listen(PORT, function () {
 	console.log(`Listening on ${PORT}`);
 });
+
 /*
 express()
 	.use(express.static(path.join(__dirname, "public")))
