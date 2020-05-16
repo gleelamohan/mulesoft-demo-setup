@@ -55,6 +55,7 @@ app.get("/configure", function (req, res) {
 			for (let row of res.rows) {
 				console.log(row);
 			}
+			return res.rows;
 		});
 	});
 });
