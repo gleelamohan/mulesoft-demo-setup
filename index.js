@@ -72,9 +72,7 @@ router.use(function (req, res, next) {
 const Path = __dirname + "/views/";
 
 app.get("/dataurl", function (req, res) {
-	var test =
-		process.env.database ||
-		"postgres://fdqsjkrhiyzoxn:0547fb5f7f821ec43144dcfc5bc10d51b0fed0c9a037ba7b9faa12f24f333195@ec2-3-231-16-122.compute-1.amazonaws.com:5432/d1f54anjp3c431";
+	var test = process.env.DATABASE_URL || "NO URI Found";
 	res.send(test);
 });
 
