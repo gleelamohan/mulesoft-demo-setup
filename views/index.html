@@ -11,12 +11,88 @@
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		<script src="/js/getrequest.js"></script>
 		<script src="/js/postrequest.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function () {
+				$.ajax("/dataurl", {
+					success: function (data, status, xhr) {
+						// success callback function
+						data = data.replace("postgres://", "");
+
+						var arr = data.split(":");
+
+						var userName = arr[0];
+
+						var arr1 = arr[1].split("@");
+
+						var password = arr1[0];
+						var host = arr1[1];
+
+						var arr3 = arr[2].split("/");
+
+						var port = arr3[0];
+						var database = arr3[1];
+
+						console.log(userName);
+						console.log(password);
+						console.log(host);
+						console.log(port);
+						console.log(database);
+
+						const URL =
+							"jdbc:postgresql://" +
+							host +
+							":" +
+							port +
+							"/" +
+							database +
+							"?sslmode=require";
+
+						const driverClassName = "org.postgresql.Driver";
+
+						$("#url").append(URL);
+						$("#username").append(userName);
+						$("#password").append(password);
+					},
+				});
+			});
+		</script>
 	</head>
 
 	<body>
 		<div class="container">
 			<div class="col-sm-4">
 				<h3>APP Loaded</h3>
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th scope="col">#</th>
+							<th scope="col" colspan="2">Mulesoft Configuration Name</th>
+							<th scope="col">Value</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th scope="row">1</th>
+							<td colspan="2">URL</td>
+							<td><span id="url"> </span></td>
+						</tr>
+						<tr>
+							<th scope="row">2</th>
+							<td colspan="2">username</td>
+							<td id="username"></td>
+						</tr>
+						<tr>
+							<th scope="row">3</th>
+							<td colspan="2">password</td>
+							<td><span id="password"> </span></td>
+						</tr>
+						<tr>
+							<th scope="row">3</th>
+							<td colspan="2">Driver Name</td>
+							<td><span id="dname"> org.postgresql.Driver</span></td>
+						</tr>
+					</tbody>
+				</table>
 			</div>
 		</div>
 	</body>
