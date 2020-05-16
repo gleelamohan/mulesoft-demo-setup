@@ -5,7 +5,7 @@ const { Pool } = require("pg");
 const bodyParser = require("body-parser");
 const PORT = process.env.PORT || 5000;
 const connString =
-	"postgres://gmlmfnycwavomr:4930eaf9b6cd056502799ba0f31b34b557b3c6b9a261bba95dfd945e89f865b7@ec2-35-171-31-33.compute-1.amazonaws.com:5432/d6vd1g4pgmuef0";
+	"postgres://fdqsjkrhiyzoxn:0547fb5f7f821ec43144dcfc5bc10d51b0fed0c9a037ba7b9faa12f24f333195@ec2-3-231-16-122.compute-1.amazonaws.com:5432/d1f54anjp3c431";
 const pool = new Pool({
 	connectionString: process.env.DATABASE_URL || connString,
 	ssl: {
@@ -70,6 +70,13 @@ router.use(function (req, res, next) {
 	next();
 });
 const Path = __dirname + "/views/";
+
+app.get("/dataurl", function (req, res) {
+	var test =
+		process.env.database ||
+		"postgres://fdqsjkrhiyzoxn:0547fb5f7f821ec43144dcfc5bc10d51b0fed0c9a037ba7b9faa12f24f333195@ec2-3-231-16-122.compute-1.amazonaws.com:5432/d1f54anjp3c431";
+	res.send(test);
+});
 
 app.get("/", function (req, res) {
 	res.sendFile(Path + "index.html");
