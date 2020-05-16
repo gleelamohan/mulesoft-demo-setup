@@ -40,13 +40,13 @@ app.get("/configure", function (req, res) {
 				);
 `;
 
-	pool.query(query, (err, res) => {
+	pool.query(query, (err, res1) => {
 		const query1 = `
 		SELECT *
 		FROM users
 		`;
 
-		client.query(query1, (err, res) => {
+		client.query(query1, (err, res2) => {
 			if (err) {
 				console.error(err);
 				return;
@@ -55,7 +55,7 @@ app.get("/configure", function (req, res) {
 			for (let row of res.rows) {
 				console.log(row);
 			}
-			return res.rows;
+			return res.send(res2.rows);
 		});
 	});
 });
