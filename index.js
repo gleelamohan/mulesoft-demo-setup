@@ -80,29 +80,6 @@ app.get("/", function (req, res) {
 	res.sendFile(Path + "index.html");
 });
 
-/*app.get("/configure", function (req, res) {
-	
-
-	pool.query(query, (err, res1) => {
-		const query1 = `
-		SELECT *
-		FROM users
-		`;
-
-		client.query(query1, (err, res2) => {
-			if (err) {
-				console.error(err);
-				return;
-			}
-
-			for (let row of res.rows) {
-				console.log(row);
-			}
-			return res.send(res2.rows);
-		});
-	});
-}); */
-
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "public")));
 
@@ -114,12 +91,3 @@ app.use("*", function (req, res) {
 app.listen(PORT, function () {
 	console.log(`Listening on ${PORT}`);
 });
-
-/*
-express()
-	.use(express.static(path.join(__dirname, "public")))
-	.set("views", path.join(__dirname, "views"))
-	.set("view engine", "ejs")
-	.get("/", (req, res) => res.render("pages/index"))
-	.listen(PORT, () => console.log(`Listening on ${PORT}`));
-	*/
